@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Essentia Metrosexual Quiz</title>
   <style>
     body {
@@ -53,22 +53,37 @@
       margin: 1rem 0;
       border-radius: 8px;
     }
-    .note {
+    .feedback-link {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: #f2f1ee;
+      text-decoration: none;
+    }
+    .feedback-link:hover {
+      color: #f27c2c;
+    }
+    .answer-box {
+      background-color: #333;
+      color: #f2f1ee;
+      padding: 1rem;
       margin-top: 1rem;
-      font-size: 0.95rem;
-      color: #ccc;
-      line-height: 1.5;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+    }
+    .answer-box:hover {
+      background-color: #444;
     }
   </style>
 </head>
 <body>
-
   <!-- Landing Page -->
   <div class="container landing-page" id="landingPage">
     <h1>Selamat datang di Essentia</h1>
-    <p>Tahukah kamu? Merawat diri dan menjaga penampilan bukanlah kelemahan, tapi bentuk penghargaan diri. Pria yang peduli akan penampilannya menunjukkan bahwa ia paham pentingnya keseimbangan antara penampilan luar dan kesehatan mental.</p>
-    <p>Melalui kampanye ini, Essentia ingin mengajak kamu untuk lebih bijak dalam merawat diri, tanpa perlu khawatir dengan stigma di sekitar.</p>
-    <p>Sebelum melangkah lebih jauh, yuk kenali dulu seberapa peduli kamu terhadap diri sendiri lewat quiz sederhana ini!</p>
+    <p>Tahukah kamu? Merawat diri dan menjaga penampilan bukanlah sebuah kelemahan, melainkan bentuk penghargaan terhadap diri sendiri. Pria yang peduli akan penampilannya menunjukkan bahwa ia paham pentingnya keseimbangan antara penampilan luar dan kesehatan mental.</p>
+    <p>Melalui kampanye ini, Essentia ingin mengajak kamu untuk lebih bijak dalam merawat diri, tanpa perlu khawatir dengan stigma yang ada di sekitar. Karena pada akhirnya, rasa percaya diri lah yang akan berbicara.</p>
+    <p>Sebelum melangkah lebih jauh, yuk kenali dulu seberapa peduli kamu terhadap diri sendiri lewat quiz sederhana ini.</p>
     <h2>Siap? Mari kita mulai.</h2>
     <button class="button" onclick="startQuiz()">Mulai Quiz</button>
   </div>
@@ -139,7 +154,7 @@
         <div class="question">
           <h2>${q.question}</h2>
           <div class="answers">
-            ${q.answers.map((a) => `<button class="button" onclick="selectAnswer('${a.type}')">${a.text}</button>`).join('')}
+            ${q.answers.map((a) => `<div class="answer-box" onclick="selectAnswer('${a.type}')">${a.text}</div>`).join('')}
           </div>
         </div>
       `;
@@ -159,10 +174,10 @@
       quizContainer.innerHTML = '';
       const topResult = Object.entries(answersTally).sort((a, b) => b[1] - a[1])[0][0];
       let descriptions = {
-        "David Beckham": "Kamu tipe metroseksual klasik: stylish, elegan, dan sangat menjaga penampilan.",
-        "Pharrell Williams": "Kamu fashion explorer — percaya diri, eksperimental, dan suka mix & match.",
-        "Timothée Chalamet": "Kamu tampil beda, artistik, dan berani berekspresi. Gaya kamu unik tapi tetap maskulin.",
-        "Chris Hemsworth": "Kamu fokus pada kesehatan tubuh, grooming cepat, simpel tapi tetap menarik perhatian.",
+        "David Beckham": "Kamu adalah tipe metroseksual klasik: stylish, elegan, dan sangat menjaga penampilan.",
+        "Pharrell Williams": "Kamu adalah fashion explorer — percaya diri dengan gaya unik dan suka mix & match.",
+        "Timothée Chalamet": "Kamu tampil beda dan berani berekspresi. Gaya kamu artistik dan tetap maskulin.",
+        "Chris Hemsworth": "Kamu fokus pada kesehatan tubuh dan grooming. Simpel tapi tetap menarik perhatian.",
         "Kim Seokjin": "Kamu cinta skincare, tampil flawless, dan sangat peduli dengan self-care dan estetika."
       };
       let images = {
@@ -176,15 +191,11 @@
         <h2>Hasilmu: ${topResult}</h2>
         <img src="${images[topResult]}" alt="${topResult}">
         <p>${descriptions[topResult]}</p>
-        <div class="note">
-          📥 Download gambar hasilmu dengan klik kanan → Simpan Gambar<br><br>
-          📣 Share hasilmu di Instagram Story dan tag <strong>@campaign.essentia</strong><br>
-          ✨ Ajak teman-temanmu ikut kampanye ini dan cari tau versi mereka!
-        </div>
+        <p>Ayo ajak teman-temanmu ikut quiz ini, download gambar hasilmu, dan tag @campaign.essentia di Instagram Story kamu!</p>
+        <a href="https://forms.gle/FS4Sy1fkVzffDthf6" class="feedback-link" target="_blank">Berikan feedback tentang kelancaran kampanye di sini!</a>
       `;
       resultContainer.style.display = 'block';
     }
   </script>
-
 </body>
 </html>
