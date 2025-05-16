@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Essentia Metrosexual Quiz</title>
   <style>
     body {
@@ -30,6 +30,7 @@
       width: 100%;
       cursor: pointer;
       font-size: 1rem;
+      border-radius: 8px;
     }
     .button:hover {
       background-color: #d66a22;
@@ -63,21 +64,40 @@
       color: #f27c2c;
     }
     .answer-box {
-      background-color: #333;
-      color: #f2f1ee;
+      background-color: #f27c2c;
+      color: #1a1a1a;
       padding: 1rem;
-      margin-top: 1rem;
       border-radius: 8px;
       cursor: pointer;
-      width: 100%;
+      flex: 1 1 45%;
       text-align: center;
+      margin: 0.5rem;
+      word-wrap: break-word;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
     .answer-box:hover {
-      background-color: #444;
+      background-color: #d66a22;
+      transform: scale(1.03);
+    }
+    .answers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    @media (max-width: 600px) {
+      .answers {
+        flex-direction: column;
+      }
+      .answer-box {
+        flex: 1 1 100%;
+        margin: 0.5rem 0;
+      }
     }
   </style>
 </head>
 <body>
+
   <!-- Landing Page -->
   <div class="container landing-page" id="landingPage">
     <h1>Selamat datang di Essentia</h1>
@@ -154,7 +174,7 @@
         <div class="question">
           <h2>${q.question}</h2>
           <div class="answers">
-            ${q.answers.map((a) => `<div class="answer-box" onclick="selectAnswer('${a.type}')">${a.text}</div>`).join('')}
+            ${q.answers.map(a => `<div class="answer-box" onclick="selectAnswer('${a.type}')">${a.text}</div>`).join('')}
           </div>
         </div>
       `;
@@ -192,10 +212,11 @@
         <img src="${images[topResult]}" alt="${topResult}">
         <p>${descriptions[topResult]}</p>
         <p>Ayo ajak teman-temanmu ikut quiz ini, download gambar hasilmu, dan tag @campaign.essentia di Instagram Story kamu!</p>
-        <a href="https://forms.gle/FS4Sy1fkVzffDthf6" class="feedback-link" target="_blank">Berikan feedback tentang kelancaran kampanye di sini!</a>
+        <a href="https://forms.gle/FS4Sy1fkVzffDthf6" class="feedback-link" target="_blank">Berikan feedback tentang kampanye di sini!</a>
       `;
       resultContainer.style.display = 'block';
     }
   </script>
+
 </body>
 </html>
